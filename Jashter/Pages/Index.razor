@@ -5,13 +5,13 @@
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
-<div>@_statusCode</div>
+<div>@_token</div>
 
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 @code {
-    private string _statusCode = "";
+    private string _token = "";
     protected override async Task OnInitializedAsync()
     {
         LoginDto loginDto = new LoginDto { Username = "test1", Password = "pas" };
@@ -19,7 +19,7 @@ Welcome to your new app.
         LoginResponseDto? loginResponseDto = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
         if (loginResponseDto is not null)
         {
-            _statusCode = loginResponseDto.StatusCode;
+            _token = loginResponseDto.Token;
             StateHasChanged();
         }
     }

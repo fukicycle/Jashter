@@ -7,7 +7,6 @@ namespace Jashter.Shared.Dto
 		{
 		}
 		public string Token { get; set; }
-		public string StatusCode { get; set; }
 	}
 }
 

@@ -15,10 +15,7 @@ Welcome to your new app.
     protected override async Task OnInitializedAsync()
     {
         LoginDto loginDto = new LoginDto { Username = "test1", Password = "pas" };
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri("https://www.sato-home.mydns.jp:8443/api/login"));
-        request.Headers.Add("Access-Control-Allow-Origin", "http://localhost:5058");
-        request.Content = new StringContent(System.Text.Json.JsonSerializer.Serialize(loginDto), System.Text.Encoding.UTF8, "application/json");
-        var reponse = await _http.SendAsync(request);
+        var reponse = await _http.PostAsJsonAsync<LoginDto>("api/login", loginDto);
         LoginResponseDto loginResponseDto = await reponse.Content.ReadFromJsonAsync<LoginResponseDto>();
         _statusCode = loginResponseDto.StatusCode;
         StateHasChanged();

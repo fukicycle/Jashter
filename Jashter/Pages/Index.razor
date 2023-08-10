@@ -16,11 +16,18 @@ Welcome to your new app.
     {
         LoginDto loginDto = new LoginDto { Username = "test1", Password = "pas" };
         var response = await _http.PostAsJsonAsync<LoginDto>("login", loginDto);
-        LoginResponseDto? loginResponseDto = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
-        if (loginResponseDto is not null)
+        if (response.StatusCode == System.Net.HttpStatusCode.OK)
         {
-            _token = loginResponseDto.Token;
-            StateHasChanged();
+            LoginResponseDto? loginResponseDto = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
+            if (loginResponseDto is not null)
+            {
+                _token = loginResponseDto.Token;
+            }
         }
+        else
+        {
+            _token = "Authentication failed";
+        }
+        StateHasChanged();
     }
 }

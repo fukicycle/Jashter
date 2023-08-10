@@ -10,14 +10,17 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
-@code{
+@code {
     private string _statusCode = "";
     protected override async Task OnInitializedAsync()
     {
         LoginDto loginDto = new LoginDto { Username = "test1", Password = "pas" };
-        var reponse = await _http.PostAsJsonAsync<LoginDto>("api/login", loginDto);
-        LoginResponseDto loginResponseDto = await reponse.Content.ReadFromJsonAsync<LoginResponseDto>();
-        _statusCode = loginResponseDto.StatusCode;
-        StateHasChanged();
+        var response = await _http.PostAsJsonAsync<LoginDto>("login", loginDto);
+        LoginResponseDto? loginResponseDto = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
+        if (loginResponseDto is not null)
+        {
+            _statusCode = loginResponseDto.StatusCode;
+            StateHasChanged();
+        }
     }
 }

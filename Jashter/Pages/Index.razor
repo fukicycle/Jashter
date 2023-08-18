@@ -1,19 +1,18 @@
 ﻿@page "/"
 @inject HttpClient _http
-@using Jashter.Shared.Dto
+@inject NavigationManager _navigationManager
+@inject ILocalStorageService _localStorage
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
-<div>@_token</div>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<h1>Hello, @_user?.FirstName @_user?.LastName</h1>
 @code {
-    private string _token = "";
+    private string? _token;
+    private string? _jwt;
+    private User? _user;
     protected override async Task OnInitializedAsync()
     {
+        //auth test
         LoginDto loginDto = new LoginDto { Username = "test1", Password = "pas" };
         var response = await _http.PostAsJsonAsync<LoginDto>("login", loginDto);
         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -22,11 +21,25 @@ Welcome to your new app.
             if (loginResponseDto is not null)
             {
                 _token = loginResponseDto.Token;
+                await _localStorage.SetItemAsStringAsync("JWT", _token);
             }
         }
         else
         {
             _token = "Authentication failed";
+        }
+        _jwt = await _localStorage.GetItemAsStringAsync("JWT");
+        if(_jwt is null)
+        {
+            _navigationManager.NavigateTo("login");
+        }
+        else
+        {
+            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, "user/get");
+            requestMessage.Headers.Add("Authorization", "Bearer " + _jwt);
+            HttpResponseMessage responseMessage = await _http.SendAsync(requestMessage);
+            responseMessage.EnsureSuccessStatusCode();
+            _user = await responseMessage.Content.ReadFromJsonAsync<User>();
         }
         StateHasChanged();
     }

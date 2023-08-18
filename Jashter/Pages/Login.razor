@@ -1,15 +1,63 @@
 ﻿@page "/login"
-<form action="/api/login">
-    <label>
-        Username:
-        <input type="text" class="login-username" />
-    </label>
-    <label>
-        Password:
-        <input type="password" class="login-password"/>
-    </label>
-    <input type="submit" value="Sign in" />
-</form>
+@inject HttpClient _http
+@inject NavigationManager _navigationManager
+@inject ILocalStorageService _localStorage
+
+<EditForm Model="@_model" OnValidSubmit="@SubmitLogin">
+    <DataAnnotationsValidator />
+    <div>
+        <label>
+            Username:
+            <InputText @bind-Value="@_model!.Username" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Password:
+            <InputText @bind-Value="@_model!.Password" type="password" />
+        </label>
+    </div>
+    <button type="submit">Login</button>
+    <div class="alert-danger msg-error">
+        <ValidationSummary />
+        <div>@_errorMsg</div>
+    </div>
+</EditForm>
 @code {
+    private LoginFormModel? _model;
+    private string? _errorMsg;
+
+    protected override void OnInitialized()
+    {
+        _model = _model ?? new LoginFormModel();
+        _errorMsg = null;
+    }
+    private async Task SubmitLogin()
+    {
+        LoginDto loginDto = new LoginDto
+        {
+            Username = _model!.Username,
+            Password = _model!.Password
+        };
+        HttpResponseMessage httpResponse = await _http.PostAsJsonAsync("login", loginDto);
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            LoginResponseDto? loginResponse = await httpResponse.Content!.ReadFromJsonAsync<LoginResponseDto>();
+            if (loginResponse is null)
+            {
+                _errorMsg = "Token is missing. Please contact server administrator.";
+            }
+            else
+            {
+                await _localStorage.SetItemAsStringAsync("JWT", loginResponse.Token);
+                _navigationManager.NavigateTo("");
+            }
+        }
+        else
+        {
+            _errorMsg = "Authentication failed.";
+            StateHasChanged();
+        }
+    }
 }
 

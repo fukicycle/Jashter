@@ -21,9 +21,11 @@
   <ItemGroup>
     <None Remove="Shared\Dto\" />
     <None Remove="Shared\Model\" />
+    <None Remove="Shared\FormModel\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shared\Dto\" />
     <Folder Include="Shared\Model\" />
+    <Folder Include="Shared\FormModel\" />
   </ItemGroup>
 </Project>

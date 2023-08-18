@@ -20,8 +20,10 @@
 
   <ItemGroup>
     <None Remove="Shared\Dto\" />
+    <None Remove="Shared\Model\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shared\Dto\" />
+    <Folder Include="Shared\Model\" />
   </ItemGroup>
 </Project>

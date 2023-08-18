@@ -1,0 +1,39 @@
+﻿.main-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(105deg, #126DF7 20%, #0756D0 50%, #126DF7);
+    color: #D7E7FE;
+}
+
+h1 {
+    margin-bottom: 1rem;
+}
+
+.form-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: .5rem;
+}
+
+.label {
+    width: 110px;
+}
+
+button {
+    margin: auto !important;
+    margin-top: 1.5rem !important;
+    display: block;
+    width: 60%;
+}
+
+.msg-error {
+    margin: .5rem;
+    padding: .5rem;
+    text-align: center;
+    color: #CF0713 !important;
+    background-color: #FCA6AB !important;
+    border-radius: .5rem;
+}

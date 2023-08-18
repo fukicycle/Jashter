@@ -3,26 +3,32 @@
 @inject NavigationManager _navigationManager
 @inject ILocalStorageService _localStorage
 
-<EditForm Model="@_model" OnValidSubmit="@SubmitLogin">
-    <DataAnnotationsValidator />
-    <div>
-        <label>
-            Username:
-            <InputText @bind-Value="@_model!.Username" />
-        </label>
+<div class="main-form">
+    <div class="form-area">
+        <h1>Sign in to Jashter</h1>
+        <EditForm Model="@_model" OnValidSubmit="@SubmitLogin">
+            <DataAnnotationsValidator />
+            <div class="form-input">
+                <div class="label">Username:</div>
+                <InputText @bind-Value="@_model!.Username" class="form" />
+            </div>
+            <div class="form-input">
+                <div class="label">Password:</div>
+                <InputText @bind-Value="@_model!.Password" type="password" class="form" />
+            </div>
+            @if (_errorMsg is not null)
+            {
+                <div class="msg-error">
+                    <div class="text-danger">@_errorMsg</div>
+                </div>
+            }
+            <button type="submit">Login</button>
+            <hr />
+            <div class="text-center">or</div>
+            <button @onclick="@(() => _navigationManager.NavigateTo("create"))">Create account</button>
+        </EditForm>
     </div>
-    <div>
-        <label>
-            Password:
-            <InputText @bind-Value="@_model!.Password" type="password" />
-        </label>
-    </div>
-    <button type="submit">Login</button>
-    <div class="alert-danger msg-error">
-        <ValidationSummary />
-        <div>@_errorMsg</div>
-    </div>
-</EditForm>
+</div>
 @code {
     private LoginFormModel? _model;
     private string? _errorMsg;
@@ -34,6 +40,7 @@
     }
     private async Task SubmitLogin()
     {
+        _errorMsg = null;
         LoginDto loginDto = new LoginDto
         {
             Username = _model!.Username,

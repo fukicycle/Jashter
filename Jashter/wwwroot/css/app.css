@@ -1,5 +1,11 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+:root {
+    --nf-base: #D7E7FE;
+    --nf-light: #F0F6FF7C;
+    --nf-dark: #75AAFB7C;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;

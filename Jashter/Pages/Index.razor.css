@@ -1,0 +1,10 @@
+﻿.profile-icon {
+    border-radius: 35px;
+    height: 70px;
+    width: 70px;
+    background-color: var(--nf-base);
+    box-shadow: -6px -6px 12px var(--nf-light), 6px 6px 12px var(--nf-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

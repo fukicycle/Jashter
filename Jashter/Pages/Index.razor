@@ -2,10 +2,24 @@
 @inject HttpClient _http
 @inject NavigationManager _navigationManager
 @inject ILocalStorageService _localStorage
-
-<PageTitle>Index</PageTitle>
-
-<h1>Hello, @_user?.FirstName @_user?.LastName</h1>
+<PageTitle>Jashter</PageTitle>
+<div class="p-2 mx-auto" style="max-width: 500px;">
+    <div class="d-flex">
+        <div class="m-auto ms-2">
+            <h2>Jashter</h2>
+        </div>
+        <div class="m-auto me-2 profile-icon">
+            @if(_user is null)
+            {
+                <div>Guest</div>
+            }
+            else
+            {
+                <div>@_user.FirstName.Substring(0,1)@_user.LastName.Substring(0,1)</div>
+            }
+        </div>
+    </div>
+</div>
 @code {
     private string? _token;
     private string? _jwt;
@@ -13,7 +27,7 @@
     protected override async Task OnInitializedAsync()
     {
         _jwt = await _localStorage.GetItemAsStringAsync("JWT");
-        if(_jwt is null)
+        if (_jwt is null)
         {
             _navigationManager.NavigateTo("login");
         }

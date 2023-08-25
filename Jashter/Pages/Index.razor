@@ -12,22 +12,6 @@
     private User? _user;
     protected override async Task OnInitializedAsync()
     {
-        //auth test
-        //LoginDto loginDto = new LoginDto { Username = "test1", Password = "pas" };
-        //var response = await _http.PostAsJsonAsync<LoginDto>("login", loginDto);
-        //if (response.StatusCode == System.Net.HttpStatusCode.OK)
-        //{
-        //    LoginResponseDto? loginResponseDto = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
-        //    if (loginResponseDto is not null)
-        //    {
-        //        _token = loginResponseDto.Token;
-        //        await _localStorage.SetItemAsStringAsync("JWT", _token);
-        //    }
-        //}
-        //else
-        //{
-        //    _token = "Authentication failed";
-        //}
         _jwt = await _localStorage.GetItemAsStringAsync("JWT");
         if(_jwt is null)
         {

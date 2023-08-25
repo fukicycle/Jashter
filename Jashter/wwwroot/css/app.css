@@ -4,6 +4,8 @@
     --nf-base: #D7E7FE;
     --nf-light: #F0F6FF7C;
     --nf-dark: #75AAFB7C;
+    --accent: #032D6D;
+    --accent-font: #D7E7FE;
 }
 
 * {

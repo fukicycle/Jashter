@@ -3,20 +3,43 @@
 @inject NavigationManager _navigationManager
 @inject ILocalStorageService _localStorage
 <PageTitle>Jashter</PageTitle>
-<div class="p-2 mx-auto" style="max-width: 500px;">
+<div class="p-2 mx-auto d-flex flex-column h-100" style="max-width: 500px;">
     <div class="d-flex">
         <div class="m-auto ms-2">
             <div class="title">Jashter</div>
         </div>
         <div class="m-auto me-2 profile-icon">
-            @if(_user is null)
+            @if (_user is null)
             {
-                <div>Guest</div>
+                <button class="d-flex" @onclick="LoginButtonOnClick">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><g fill="#d7e7fe"><path d="M12 3.25a.75.75 0 0 0 0 1.5a7.25 7.25 0 1 1 0 14.5a.75.75 0 0 0 0 1.5a8.75 8.75 0 1 0 0-17.5Z" /><path d="M10.47 9.53a.75.75 0 0 1 1.06-1.06l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06l1.72-1.72H4a.75.75 0 0 1 0-1.5h8.19l-1.72-1.72Z" /></g></svg>
+                </button>
             }
             else
             {
-                <div>@_user.FirstName.Substring(0,1)@_user.LastName.Substring(0,1)</div>
+                <div>@_user.FirstName.Substring(0, 1)@_user.LastName.Substring(0, 1)</div>
             }
+        </div>
+    </div>
+    <div class="h-100">
+    </div>
+    <div class="menu-wrapper">
+        <div class="menu">
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 36 36"><path fill="#032d6d" d="M33.87 8.32L28 2.42a2.07 2.07 0 0 0-2.92 0L4.27 23.2l-1.9 8.2a2.06 2.06 0 0 0 2 2.5a2.14 2.14 0 0 0 .43 0l8.29-1.9l20.78-20.76a2.07 2.07 0 0 0 0-2.92ZM12.09 30.2l-7.77 1.63l1.77-7.62L21.66 8.7l6 6ZM29 13.25l-6-6l3.48-3.46l5.9 6Z" class="clr-i-outline clr-i-outline-path-1" /><path fill="none" d="M0 0h36v36H0z" /></svg>
+            </button>
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><g fill="none" stroke="#032d6d" stroke-width="1.5"><path stroke-linecap="round" d="M16 22v-9c0-1.414 0-2.121-.44-2.56C15.122 10 14.415 10 13 10h-2c-1.414 0-2.121 0-2.56.44C8 10.878 8 11.585 8 13m0 9v-5m0 5c0-1.414 0-2.121-.44-2.56C7.122 19 6.415 19 5 19c-1.414 0-2.121 0-2.56.44C2 19.878 2 20.585 2 22m20 0v-3c0-1.414 0-2.121-.44-2.56C21.122 16 20.415 16 19 16c-1.414 0-2.121 0-2.56.44C16 16.878 16 17.585 16 19v3" /><path d="M11.146 3.023C11.526 2.34 11.716 2 12 2c.284 0 .474.34.854 1.023l.098.176c.108.194.162.29.246.354c.085.064.19.088.4.135l.19.044c.738.167 1.107.25 1.195.532c.088.283-.164.577-.667 1.165l-.13.152c-.143.167-.215.25-.247.354c-.032.104-.021.215 0 .438l.02.203c.076.785.114 1.178-.115 1.352c-.23.175-.576.015-1.267-.303l-.178-.082c-.197-.09-.295-.136-.399-.136c-.104 0-.202.046-.399.136l-.178.082c-.691.318-1.037.478-1.267.303c-.23-.174-.191-.567-.115-1.352l.02-.203c.021-.223.032-.334 0-.438c-.032-.103-.104-.187-.247-.354l-.13-.152c-.503-.588-.755-.882-.667-1.165c.088-.282.457-.365 1.195-.532l.19-.044c.21-.047.315-.07.4-.135c.084-.064.138-.16.246-.354l.098-.176Z" /></g></svg>
+            </button>
+            <button class="menu-home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20"><path fill="#d7e7fe" d="M18.178 11.373a.7.7 0 0 1 .7.7v5.874c.027.812-.071 1.345-.434 1.68c-.338.311-.828.4-1.463.366H3.144C2.5 19.961 2 19.7 1.768 19.173c-.154-.347-.226-.757-.226-1.228v-5.873a.7.7 0 0 1 1.4 0v5.873c0 .232.026.42.07.562l.036.098l-.003-.01c.001-.013.03-.008.132-.002h13.84c.245.014.401 0 .456-.001l.004-.001c-.013-.053.012-.27 0-.622v-5.897a.7.7 0 0 1 .701-.7ZM10.434 0c.264 0 .5.104.722.297l8.625 8.139a.7.7 0 1 1-.962 1.017l-8.417-7.944l-9.244 7.965a.7.7 0 0 1-.915-1.06L9.689.277l.086-.064c.214-.134.428-.212.66-.212Z" /></svg>
+            </button>
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 2048 2048"><path fill="#032d6d" d="M1664 0v2048H256q-53 0-99-20t-82-55t-55-81t-20-100V256q0-49 21-95t57-82t82-57t96-22h1408zm-128 1664H256q-27 0-50 10t-40 27t-28 41t-10 50q0 27 10 50t27 40t41 28t50 10h1280v-256zm-1408-94q60-34 128-34h1280V128H256q-23 0-46 11t-41 30t-29 41t-12 46v1314zM384 384h896v384H384V384zm128 256h640V512H512v128z" /></svg>
+            </button>
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 1024 1024"><path fill="#032d6d" d="M600.704 64a32 32 0 0 1 30.464 22.208l35.2 109.376c14.784 7.232 28.928 15.36 42.432 24.512l112.384-24.192a32 32 0 0 1 34.432 15.36L944.32 364.8a32 32 0 0 1-4.032 37.504l-77.12 85.12a357.12 357.12 0 0 1 0 49.024l77.12 85.248a32 32 0 0 1 4.032 37.504l-88.704 153.6a32 32 0 0 1-34.432 15.296L708.8 803.904c-13.44 9.088-27.648 17.28-42.368 24.512l-35.264 109.376A32 32 0 0 1 600.704 960H423.296a32 32 0 0 1-30.464-22.208L357.696 828.48a351.616 351.616 0 0 1-42.56-24.64l-112.32 24.256a32 32 0 0 1-34.432-15.36L79.68 659.2a32 32 0 0 1 4.032-37.504l77.12-85.248a357.12 357.12 0 0 1 0-48.896l-77.12-85.248A32 32 0 0 1 79.68 364.8l88.704-153.6a32 32 0 0 1 34.432-15.296l112.32 24.256c13.568-9.152 27.776-17.408 42.56-24.64l35.2-109.312A32 32 0 0 1 423.232 64H600.64zm-23.424 64H446.72l-36.352 113.088l-24.512 11.968a294.113 294.113 0 0 0-34.816 20.096l-22.656 15.36l-116.224-25.088l-65.28 113.152l79.68 88.192l-1.92 27.136a293.12 293.12 0 0 0 0 40.192l1.92 27.136l-79.808 88.192l65.344 113.152l116.224-25.024l22.656 15.296a294.113 294.113 0 0 0 34.816 20.096l24.512 11.968L446.72 896h130.688l36.48-113.152l24.448-11.904a288.282 288.282 0 0 0 34.752-20.096l22.592-15.296l116.288 25.024l65.28-113.152l-79.744-88.192l1.92-27.136a293.12 293.12 0 0 0 0-40.256l-1.92-27.136l79.808-88.128l-65.344-113.152l-116.288 24.96l-22.592-15.232a287.616 287.616 0 0 0-34.752-20.096l-24.448-11.904L577.344 128zM512 320a192 192 0 1 1 0 384a192 192 0 0 1 0-384zm0 64a128 128 0 1 0 0 256a128 128 0 0 0 0-256z" /></svg>
+            </button>
         </div>
     </div>
 </div>
@@ -27,18 +50,27 @@
     protected override async Task OnInitializedAsync()
     {
         _jwt = await _localStorage.GetItemAsStringAsync("JWT");
-        if (_jwt is null)
+        if (_jwt is not null)
         {
-            _navigationManager.NavigateTo("login");
-        }
-        else
-        {
-            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, "user/get");
-            requestMessage.Headers.Add("Authorization", "Bearer " + _jwt);
-            HttpResponseMessage responseMessage = await _http.SendAsync(requestMessage);
-            responseMessage.EnsureSuccessStatusCode();
-            _user = await responseMessage.Content.ReadFromJsonAsync<User>();
+            try
+            {
+                HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, "user/get");
+                requestMessage.Headers.Add("Authorization", "Bearer " + _jwt);
+                HttpResponseMessage responseMessage = await _http.SendAsync(requestMessage);
+                responseMessage.EnsureSuccessStatusCode();
+                _user = await responseMessage.Content.ReadFromJsonAsync<User>();
+            }
+            catch (Exception e)
+            {
+                //if can not successfull switch to offline mode
+                Settings.OFFLINE_MODE = true;
+            }
         }
         StateHasChanged();
+    }
+
+    private void LoginButtonOnClick()
+    {
+        _navigationManager.NavigateTo("login");        
     }
 }

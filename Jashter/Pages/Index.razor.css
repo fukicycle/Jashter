@@ -14,3 +14,54 @@
 .title {
     font-size: 32px;
 }
+
+.profile-icon > button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.menu-wrapper {
+    padding: 18px;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+    background-color: var(--nf-base);
+    color: var(--accent-font);
+    box-shadow: -6px -6px 12px var(--nf-light), 6px 6px 12px var(--nf-dark);
+    border-radius: 20px;
+}
+
+    .menu > button {
+        background-color: var(--nf-base);
+        border: none;
+        outline: none;
+        height: 50px;
+        width: 50px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: -9px -9px 12px 0px var(--nf-light), 9px 9px 12px 0px var(--nf-dark);
+    }
+
+        .menu > button:active {
+            box-shadow: inset -3px -3px 12px 0px var(--nf-light), inset 3px 3px 12px 0px var(--nf-dark);
+        }
+
+.menu-home {
+    transform: translateY(-35px);
+    width: 70px !important;
+    height: 70px !important;
+    border-radius: 35px !important;
+    background-color: var(--accent) !important;
+}
+
+    .menu-home:active {
+        box-shadow: none!important;
+    }

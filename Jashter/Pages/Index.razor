@@ -1,7 +1,8 @@
 ﻿@page "/"
-@inject HttpClient _http
+@* @inject HttpClient _http *@
 @inject NavigationManager _navigationManager
 @inject ILocalStorageService _localStorage
+@inject IUserService _userService
 <PageTitle>Jashter</PageTitle>
 <div class="p-2 mx-auto d-flex flex-column h-100" style="max-width: 500px;">
     <div class="d-flex">
@@ -57,26 +58,10 @@
     private int selectedIndex = 2;
     private string? _token;
     private string? _jwt;
-    private User? _user;
+    private UserResponseDto? _user;
     protected override async Task OnInitializedAsync()
     {
-        _jwt = await _localStorage.GetItemAsStringAsync("JWT");
-        if (_jwt is not null)
-        {
-            try
-            {
-                HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, "user/get");
-                requestMessage.Headers.Add("Authorization", "Bearer " + _jwt);
-                HttpResponseMessage responseMessage = await _http.SendAsync(requestMessage);
-                responseMessage.EnsureSuccessStatusCode();
-                _user = await responseMessage.Content.ReadFromJsonAsync<User>();
-            }
-            catch (Exception e)
-            {
-                //if can not successfull switch to offline mode
-                Settings.OFFLINE_MODE = true;
-            }
-        }
+        _user = await _userService.GetUserAsync();
         StateHasChanged();
     }
 

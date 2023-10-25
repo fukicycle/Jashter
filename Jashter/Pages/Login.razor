@@ -1,7 +1,6 @@
 ﻿@page "/login"
-@inject HttpClient _http
+@inject IAuthenticationService _authenticateionService
 @inject NavigationManager _navigationManager
-@inject ILocalStorageService _localStorage
 
 <div class="main-form">
     <div class="form-area">
@@ -30,35 +29,21 @@
     </div>
 </div>
 @code {
-    private LoginFormModel? _model;
-    private string? _errorMsg;
+    private LoginFormModel _model = new LoginFormModel();
+    private string? _errorMsg = null;
 
-    protected override void OnInitialized()
-    {
-        _model = _model ?? new LoginFormModel();
-        _errorMsg = null;
-    }
     private async Task SubmitLogin()
     {
         _errorMsg = null;
         LoginDto loginDto = new LoginDto
-        {
-            Username = _model!.Username,
-            Password = _model!.Password
-        };
-        HttpResponseMessage httpResponse = await _http.PostAsJsonAsync("login", loginDto);
-        if (httpResponse.IsSuccessStatusCode)
-        {
-            LoginResponseDto? loginResponse = await httpResponse.Content!.ReadFromJsonAsync<LoginResponseDto>();
-            if (loginResponse is null)
             {
-                _errorMsg = "Token is missing. Please contact server administrator.";
-            }
-            else
-            {
-                await _localStorage.SetItemAsStringAsync("JWT", loginResponse.Token);
-                _navigationManager.NavigateTo("");
-            }
+                Username = _model!.Username,
+                Password = _model!.Password
+            };
+        bool result = await _authenticateionService.Login(loginDto);
+        if (result)
+        {
+            _navigationManager.NavigateTo("");
         }
         else
         {

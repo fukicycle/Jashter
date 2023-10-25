@@ -1,0 +1,33 @@
+﻿.button-normal {
+    background-color: var(--nf-base);
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -9px -9px 12px 0px var(--nf-light), 9px 9px 12px 0px var(--nf-dark);
+}
+
+.button-selected {
+    background-color: var(--nf-base);
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset -3px -3px 12px 0px var(--nf-light), inset 3px 3px 12px 0px var(--nf-dark);
+}
+
+.menu-home {
+    transform: translateY(-35px);
+    width: 70px !important;
+    height: 70px !important;
+    border-radius: 35px !important;
+    background-color: var(--accent) !important;
+}

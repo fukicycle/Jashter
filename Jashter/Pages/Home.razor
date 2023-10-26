@@ -1,6 +1,23 @@
-﻿<h3>Home</h3>
+﻿@inject ITokenService _tokenService
+@inject NavigationManager _navigationManager
+<h3>Home</h3>
 
 @code {
+    [Parameter]
+    public UserResponseDto? User { get; set; }
 
+    private string icon = "";
+
+    protected override Task OnParametersSetAsync()
+    {
+        icon = User?.Icon ?? "/img/default.png";
+        return base.OnParametersSetAsync();
+    }
+
+    private async Task LogoutButtonOnClick()
+    {
+        await _tokenService.Delete();
+        _navigationManager.NavigateTo("", true);
+    }
 }
 

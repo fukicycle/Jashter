@@ -26,5 +26,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shared\FormModel\" />
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 </Project>

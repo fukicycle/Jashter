@@ -1,10 +1,10 @@
-﻿using Jashter.Shared.Dto;
+﻿using Jashter.Shared.Dto.Request;
 
 namespace Jashter.Services.Interfaces
 {
     public interface IAuthenticationService
     {
-        Task<bool> Login(LoginRequestDto loginDto);
-        void Logout();
+        Task<bool> LoginAsync(LoginRequestDto loginDto);
+        Task LogoutAsync();
     }
 }

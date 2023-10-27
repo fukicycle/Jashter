@@ -1,5 +1,5 @@
 ﻿using Jashter.Services.Interfaces;
-using Jashter.Shared.Dto;
+using Jashter.Shared.Dto.Response;
 
 namespace Jashter.Services
 {
@@ -16,7 +16,7 @@ namespace Jashter.Services
         }
         public async Task<UserResponseDto?> GetUserAsync()
         {
-            if (await _tokenService.Exists())
+            if (await _tokenService.ExistsAsync())
             {
                 IHttpService.HttpResponse<UserResponseDto> result = await _httpService.SendAsync<UserResponseDto>("user", HttpMethod.Get);
                 if (result.StatusCode == System.Net.HttpStatusCode.OK && result.Content is not null)

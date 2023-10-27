@@ -29,7 +29,7 @@ namespace Jashter.Services
                 HttpRequestMessage httpRequestMessage = new HttpRequestMessage();
                 httpRequestMessage.Method = method;
                 httpRequestMessage.RequestUri = new Uri(_httpClient.BaseAddress!.AbsoluteUri + path);
-                if (await _tokenService.Exists())
+                if (await _tokenService.ExistsAsync())
                 {
                     string? jwt = await _tokenService.GetTokenAsync();
                     httpRequestMessage.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jwt);

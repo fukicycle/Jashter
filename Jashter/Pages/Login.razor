@@ -40,7 +40,7 @@
                 Username = _model!.Username,
                 Password = _model!.Password
             };
-        bool result = await _authenticateionService.Login(loginDto);
+        bool result = await _authenticateionService.LoginAsync(loginDto);
         if (result)
         {
             _navigationManager.NavigateTo("");

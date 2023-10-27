@@ -1,5 +1,5 @@
 ﻿using Jashter.Services.Interfaces;
-using Jashter.Shared.Dto;
+using Jashter.Shared.Dto.Response;
 
 namespace Jashter.Services
 {

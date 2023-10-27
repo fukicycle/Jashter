@@ -3,9 +3,9 @@
     public interface ITokenService
     {
         public const string KEY = "JWT";
-        Task Write(string token);
+        Task WriteAsync(string token);
         Task<string?> GetTokenAsync();
-        Task Delete();
-        Task<bool> Exists();
+        Task DeleteAsync();
+        Task<bool> ExistsAsync();
     }
 }

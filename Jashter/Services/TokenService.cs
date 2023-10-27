@@ -13,13 +13,13 @@ namespace Jashter.Services
             _logger = logger;
         }
 
-        public async Task Delete()
+        public async Task DeleteAsync()
         {
             _logger.LogInformation("Delete token");
             await _localStorageService.RemoveItemAsync(ITokenService.KEY);
         }
 
-        public async Task<bool> Exists()
+        public async Task<bool> ExistsAsync()
         {
             _logger.LogInformation("Check token");
             return await _localStorageService.ContainKeyAsync(ITokenService.KEY);
@@ -36,7 +36,7 @@ namespace Jashter.Services
             return token;
         }
 
-        public async Task Write(string token)
+        public async Task WriteAsync(string token)
         {
             _logger.LogInformation("Write token");
             await _localStorageService.SetItemAsStringAsync(ITokenService.KEY, token);

@@ -1,4 +1,4 @@
-﻿@inject ITokenService _tokenService
+﻿@inject IAuthenticationService _authenticationService
 @inject NavigationManager _navigationManager
 <h3>Home</h3>
 
@@ -16,7 +16,7 @@
 
     private async Task LogoutButtonOnClick()
     {
-        await _tokenService.Delete();
+        await _authenticationService.LogoutAsync();
         _navigationManager.NavigateTo("", true);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Jashter.Shared.Dto
+
+namespace Jashter.Shared.Dto.Response
 {
     public class LoginResponseDto
     {

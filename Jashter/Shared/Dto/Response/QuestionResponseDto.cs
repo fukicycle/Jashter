@@ -1,6 +1,6 @@
 ﻿using System.Security.Principal;
 
-namespace Jashter.Shared.Dto
+namespace Jashter.Shared.Dto.Response
 {
     public class QuestionResponseDto
     {

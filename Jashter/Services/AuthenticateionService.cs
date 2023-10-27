@@ -1,5 +1,6 @@
 ﻿using Jashter.Services.Interfaces;
-using Jashter.Shared.Dto;
+using Jashter.Shared.Dto.Request;
+using Jashter.Shared.Dto.Response;
 using Newtonsoft.Json;
 
 namespace Jashter.Services
@@ -18,12 +19,12 @@ namespace Jashter.Services
             _logger = logger;
 
         }
-        public async Task<bool> Login(LoginRequestDto loginDto)
+        public async Task<bool> LoginAsync(LoginRequestDto loginDto)
         {
             //Delete exists token.
-            if (await _tokenService.Exists())
+            if (await _tokenService.ExistsAsync())
             {
-                await _tokenService.Delete();
+                await _tokenService.DeleteAsync();
             }
             string content = _jsonConvertService.Serialize(loginDto);
             IHttpService.HttpResponse<LoginResponseDto> result = await _httpService.SendAsync<LoginResponseDto>("login", HttpMethod.Post, content);
@@ -31,7 +32,7 @@ namespace Jashter.Services
             {
                 if (result.Content.Token is not null)
                 {
-                    await _tokenService.Write(result.Content.Token);
+                    await _tokenService.WriteAsync(result.Content.Token);
                     _logger.LogInformation("Login success");
                     return true;
                 }
@@ -42,9 +43,9 @@ namespace Jashter.Services
             return false;
         }
 
-        public void Logout()
+        public async Task LogoutAsync()
         {
-            _tokenService.Delete();
+            await _tokenService.DeleteAsync();
         }
     }
 }

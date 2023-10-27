@@ -1,4 +1,4 @@
-﻿using Jashter.Shared.Dto;
+﻿using Jashter.Shared.Dto.Response;
 
 namespace Jashter.Services.Interfaces
 {

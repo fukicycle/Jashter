@@ -35,7 +35,7 @@
     private async Task SubmitLogin()
     {
         _errorMsg = null;
-        LoginDto loginDto = new LoginDto
+        LoginRequestDto loginDto = new LoginRequestDto
             {
                 Username = _model!.Username,
                 Password = _model!.Password

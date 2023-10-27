@@ -18,7 +18,7 @@ namespace Jashter.Services
             _logger = logger;
 
         }
-        public async Task<bool> Login(LoginDto loginDto)
+        public async Task<bool> Login(LoginRequestDto loginDto)
         {
             //Delete exists token.
             if (await _tokenService.Exists())
@@ -29,9 +29,14 @@ namespace Jashter.Services
             IHttpService.HttpResponse<LoginResponseDto> result = await _httpService.SendAsync<LoginResponseDto>("login", HttpMethod.Post, content);
             if (result.StatusCode == System.Net.HttpStatusCode.OK && result.Content is not null)
             {
-                await _tokenService.Write(result.Content.Token);
-                _logger.LogInformation("Login success");
-                return true;
+                if (result.Content.Token is not null)
+                {
+                    await _tokenService.Write(result.Content.Token);
+                    _logger.LogInformation("Login success");
+                    return true;
+                }
+                _logger.LogError("Login success, but token is missing.");
+                return false;
             }
             _logger.LogWarning(result.ErrorMessage);
             return false;

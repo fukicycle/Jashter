@@ -52,7 +52,7 @@ namespace Jashter.Services
             {
                 httpResponse.Content = default;
                 httpResponse.ErrorMessage = ex.Message;
-                httpResponse.StatusCode = ex.StatusCode;
+                httpResponse.StatusCode = ex.StatusCode ?? HttpStatusCode.BadRequest;
                 _logger.LogError(ex.InnerException?.Message);
             }
             catch (Exception ex)

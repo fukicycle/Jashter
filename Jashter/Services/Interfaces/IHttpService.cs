@@ -8,7 +8,7 @@ namespace Jashter.Services.Interfaces
         class HttpResponse<T>
         {
             public T? Content { get; set; }
-            public HttpStatusCode? StatusCode { get; set; }
+            public HttpStatusCode StatusCode { get; set; }
             public string? ErrorMessage { get; set; }
         }
     }

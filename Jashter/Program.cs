@@ -20,5 +20,6 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHttpService, HttpService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticateionService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
 
 await builder.Build().RunAsync();

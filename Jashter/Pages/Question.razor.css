@@ -1,0 +1,59 @@
+﻿.spinner-area {
+    margin-top: 3px;
+    padding: 0 17px;
+    align-items: center;
+}
+
+
+select {
+    height: 55px;
+    outline: none;
+    border: none;
+    width: 100%;
+    border-radius: 15px;
+    background-color: var(--nf-base);
+    color: var(--accent-font);
+    box-shadow: -6px -6px 12px var(--nf-light), 6px 6px 12px var(--nf-dark);
+}
+
+.spinner {
+    padding: 4px 0;
+    align-items: center;
+}
+
+    .spinner > div {
+        width: 50%;
+    }
+
+.choice-area {
+    flex: 1;
+}
+
+.word-area-wrapper {
+    margin-top: 4px;
+    padding: 0 17px;
+    width: 100%;
+}
+
+.word-area {
+    width: 100%;
+    padding: 5px;
+    height: 190px;
+    border-radius: 15px;
+    background-color: var(--nf-base);
+    color: var(--accent-font);
+    box-shadow: -6px -6px 12px var(--nf-light), 6px 6px 12px var(--nf-dark);
+}
+
+.word-inner-area {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: var(--nf-base);
+    color: var(--accent);
+    box-shadow: -6px -6px 12px var(--nf-light) inset, 6px 6px 12px var(--nf-dark) inset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}

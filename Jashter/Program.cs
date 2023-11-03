@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Blazored.LocalStorage;
 using Jashter.Services.Interfaces;
 using Jashter.Services;
+using fukicycle.Blazor.Neumorphism.Design.Base;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
+builder.UseNeumorphism(BaseColor.Parse("#D7E7FE"));
 #if DEBUG
 string uri = "http://localhost:8080/api/";
 #else

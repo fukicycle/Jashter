@@ -84,36 +84,3 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
-
-
-
-.form {
-    padding: .5rem;
-    outline: none;
-    border: none;
-    border-radius: .5rem;
-    border-bottom: solid 1px #032D6D;
-    background-color: #F0F6FF;
-    color: #032D6D;
-}
-
-button {
-    padding: .5rem;
-    outline: none;
-    border: none;
-    border-radius: .5rem;
-    border-bottom: solid 1px #032D6D;
-    background-color: #F0F6FF;
-    color: #032D6D;
-}
-
-.valid {
-    background-color: #F0F6FF !important;
-    color: #032D6D !important;
-    outline: none !important;
-}
-
-.invalid {
-    background-color: #FCA6AB !important;
-    outline: none !important;
-}

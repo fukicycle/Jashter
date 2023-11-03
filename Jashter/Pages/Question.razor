@@ -1,44 +1,50 @@
 ﻿@inject IQuestionService _questionService
 <div class="h-100 d-flex flex-column">
-    <div>
-        <div class="spinner-area">
-            <div class="d-flex spinner">
-                <div>Level</div>
-                <div>
+    <div class="spinner-area">
+        <div class="d-flex spinner align-items-center">
+            <div>Level</div>
+            <div class="w-100">
+
+                <Neumorphism>
                     <select>
                         <option></option>
                     </select>
-                </div>
-            </div>
-            <div class="d-flex spinner">
-                <div>Part of Speech</div>
-                <div>
-                    <select>
-                        <option></option>
-                    </select>
-                </div>
+                </Neumorphism>
             </div>
         </div>
-        <div class="word-area-wrapper">
-            <div class="word-area">
-                <div class="word-inner-area">
-                    <div>Word</div>
-                </div>
+        <div class="d-flex spinner align-items-center">
+            <div>Part of Speech</div>
+            <div class="w-100">
+                <Neumorphism>
+                    <select>
+                        <option></option>
+                    </select>
+                </Neumorphism>
             </div>
         </div>
     </div>
+    <div class="word-area-wrapper">
+        <Neumorphism ShapeType="ShapeType.CONVEX">
+            <div class="word-inner-area">
+                <div>Word</div>
+            </div>
+        </Neumorphism>
+    </div>
     <div class="choice-area">
-        @if (_questionList.FirstOrDefault() is not null)
+        @if (_currentQuestion is not null)
         {
-            @foreach (QuestionResponseDto.QuestionChoice item in _questionList.FirstOrDefault().Choices)
+            foreach (var choice in _currentQuestion.Choices)
             {
-                <div>@item.Meaning</div>
+                <Neumorphism class="mb-2">
+                    <button>@choice.Meaning</button>
+                </Neumorphism>
             }
         }
     </div>
 </div>
 @code {
     private IEnumerable<QuestionResponseDto> _questionList = Enumerable.Empty<QuestionResponseDto>();
+    private QuestionResponseDto? _currentQuestion = null;
 
     protected override async Task OnInitializedAsync()
     {
@@ -46,6 +52,7 @@
         questionRequestDto.LevelId = 2;
         questionRequestDto.PartOfSpeechId = 1;
         _questionList = await _questionService.GetQuestionsAsync(questionRequestDto);
+        _currentQuestion = _questionList.FirstOrDefault();
         StateHasChanged();
     }
 }

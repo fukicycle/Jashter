@@ -3,30 +3,13 @@
 @inject IUserService _userService
 <PageTitle>Jashter</PageTitle>
 <div class="p-2 mx-auto d-flex flex-column h-100" style="max-width: 500px;">
-    <div class="d-flex">
-        <div class="m-auto ms-2">
-            <div class="title">Jashter</div>
-        </div>
-        <div class="m-auto me-2 profile-icon">
-            @if (_user is null)
-            {
-                <button class="d-flex" @onclick="LoginButtonOnClick">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><g fill="#d7e7fe"><path d="M12 3.25a.75.75 0 0 0 0 1.5a7.25 7.25 0 1 1 0 14.5a.75.75 0 0 0 0 1.5a8.75 8.75 0 1 0 0-17.5Z" /><path d="M10.47 9.53a.75.75 0 0 1 1.06-1.06l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06l1.72-1.72H4a.75.75 0 0 1 0-1.5h8.19l-1.72-1.72Z" /></g></svg>
-                </button>
-            }
-            else
-            {
-                <div>@_user.FirstName.Substring(0, 1)@_user.LastName.Substring(0, 1)</div>
-            }
-        </div>
-    </div>
     <div class="h-100">
         @switch (selectedIndex)
         {
             case 0:
                 <Question></Question>
                 break;
-            case 2:
+            case 3:
                 <Home></Home>
                 break;
             default:
@@ -34,19 +17,16 @@
                 break;
         }
     </div>
-    <div class="menu-wrapper">
-        <div class="menu">
-            <MenuButton MenuType="0" IsSelected="selectedMenu[0]" OnClick="(() => MenuButtonOnClick(0))"></MenuButton>
-            <MenuButton MenuType="1" IsSelected="selectedMenu[1]" OnClick="(() => MenuButtonOnClick(1))"></MenuButton>
-            <MenuButton MenuType="2" IsSelected="selectedMenu[2]" OnClick="(() => MenuButtonOnClick(2))"></MenuButton>
-            <MenuButton MenuType="3" IsSelected="selectedMenu[3]" OnClick="(() => MenuButtonOnClick(3))"></MenuButton>
-            <MenuButton MenuType="4" IsSelected="selectedMenu[4]" OnClick="(() => MenuButtonOnClick(4))"></MenuButton>
-        </div>
+    <div class="menu">
+        <MenuButton MenuType="0" IsSelected="selectedMenu[0]" OnClick="(() => MenuButtonOnClick(0))"></MenuButton>
+        <MenuButton MenuType="1" IsSelected="selectedMenu[1]" OnClick="(() => MenuButtonOnClick(1))"></MenuButton>
+        <MenuButton MenuType="2" IsSelected="selectedMenu[2]" OnClick="(() => MenuButtonOnClick(2))"></MenuButton>
+        <MenuButton MenuType="3" IsSelected="selectedMenu[3]" OnClick="(() => MenuButtonOnClick(3))"></MenuButton>
     </div>
 </div>
 @code {
-    private bool[] selectedMenu = new bool[] { false, false, true, false, false };
-    private int selectedIndex = 2;
+    private bool[] selectedMenu = new bool[] { true, false, false, false };
+    private int selectedIndex = 0;
     private UserResponseDto? _user;
     protected override async Task OnInitializedAsync()
     {

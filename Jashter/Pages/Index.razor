@@ -34,11 +34,6 @@
         StateHasChanged();
     }
 
-    private void LoginButtonOnClick()
-    {
-        _navigationManager.NavigateTo("login");
-    }
-
     private void MenuButtonOnClick(int type)
     {
         for (int i = 0; i < selectedMenu.Length; i++)
@@ -47,6 +42,11 @@
         }
         selectedMenu[type] = true;
         selectedIndex = type;
+        if (selectedIndex == 3 && _user is null)
+        {
+            _navigationManager.NavigateTo("login");
+
+        }
         StateHasChanged();
     }
 }
